@@ -5,5 +5,4 @@
 
 # 类工厂服务 #
 ## 框架 ##
-![类工厂服务](https://www.wsai.cc/wp-content/uploads/2018/07/类工厂服务.png)
-
+https://www.wsai.cc/wp-content/uploads/2018/07/类工厂服务.png
