@@ -1,0 +1,23 @@
+目录设置：
+解决方案根目录创建  include  3rdparty lib  src bin  temp目录  bin 目录下创建 debug release目录 temp目录下创建 link  compile 目录
+第三方和对外公开的头文件放在3rdparty中，svn更新后需要解压3rdparty文件，源文件放在src中  自己的库文件放在lib中，
+
+首先加载属性表
+
+动态库：
+所有配置：
+后期生成事件：copy $(TargetDir)$(TargetName).lib $(SolutionDir)lib\;  注意：需要调整每一行一个copy命令
+
+静态库：
+所有配置：
+后期生成事件：copy $(TargetDir)$(TargetName).lib $(SolutionDir)lib\;  只此一个
+
+可执行文件：
+所有配置：
+命令：$(SolutionDir)\Bin\$(Configuration)\$(TargetName)$(TargetExt)
+工作目录：$(SolutionDir)\Bin\$(Configuration)\
+环境变量：PATH=$PATH;$(SolutionDir)\Bin\$(Configuration)\;
+
+如果是Qt查件创建的工程，则需要将 常规->输出目录 和 链接器->常规->输出目录  修改为从父类继承    
+
+如果是创建样例项目则需要将 属性->常规->输出目录项中  $SolutionDir删除，以免样例生成的文件破坏解决方案文件目录

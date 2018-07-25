@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Framework>
+		<ClassFactory>
+			<Factory name="ProductFactory" type="ConcretProductFactoryA" />
+			<Factory name="CustomerFactory" type="ConcreteCustomerFactory" />
+		</ClassFactory>
+	</Framework>
+</Configuration>
