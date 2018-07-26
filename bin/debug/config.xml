@@ -2,8 +2,8 @@
 <Configuration>
 	<Framework>
 		<ClassFactory>
-			<Factory name="ProductFactory" type="ConcretProductFactoryA" />
-			<Factory name="CustomerFactory" type="ConcreteCustomerFactory" />
+			<Factory name="ProductFactory">ConcretProductFactoryA</Factory>
+			<Factory name="CustomerFactory">ConcreteCustomerFactory</Factory>
 		</ClassFactory>
 	</Framework>
 </Configuration>

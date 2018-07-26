@@ -42,6 +42,9 @@
     <Filter Include="framework\reflect">
       <UniqueIdentifier>{dd1684c0-de51-4779-8aae-8f51a5be57ed}</UniqueIdentifier>
     </Filter>
+    <Filter Include="framework\cache">
+      <UniqueIdentifier>{8ca1a613-1f19-4050-8729-42ab182ddf0b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -58,6 +61,9 @@
     </ClCompile>
     <ClCompile Include="framework\reflect\Reflect.cpp">
       <Filter>framework\reflect</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\cache\Cache.cpp">
+      <Filter>framework\cache</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +82,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="ConcretProductFactoryA.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\cache\Cache.h">
+      <Filter>framework\cache</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheTester.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

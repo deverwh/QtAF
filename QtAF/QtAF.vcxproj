@@ -27,10 +27,12 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\slnconfig_d.props" />
+    <Import Project="..\3rdparty\tinyxpath\tinyxpathd.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\slnconfig.props" />
+    <Import Project="..\3rdparty\tinyxpath\tinyxpath.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
@@ -52,10 +54,12 @@
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>qtmaind.lib;QtCored4.lib;QtGuid4.lib;QtXmld4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -76,6 +80,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ConcretProductFactoryA.cpp" />
+    <ClCompile Include="framework\cache\Cache.cpp" />
     <ClCompile Include="framework\classfactory\ClassFactory.cpp" />
     <ClCompile Include="framework\reflect\Reflect.cpp" />
     <ClCompile Include="GeneratedFiles\qrc_qtaf.cpp">
@@ -100,7 +105,9 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CacheTester.h" />
     <ClInclude Include="ConcretProductFactoryA.h" />
+    <ClInclude Include="framework\cache\Cache.h" />
     <ClInclude Include="framework\classfactory\ClassFactory.h" />
     <ClInclude Include="framework\reflect\Reflect.h" />
     <ClInclude Include="IProductFactory.h" />

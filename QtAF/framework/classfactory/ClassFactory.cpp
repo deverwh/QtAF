@@ -1,39 +1,25 @@
 #include "ClassFactory.h"
 #include "framework/reflect/Reflect.h"
 #include <QtXml>
+#include <tinyxpath/tinyxml.h>
+#include <tinyxpath/xpath_static.h>
 
 void * QtAF::ClassFactory::getFactory(const QString &factoryName)
 {
 	void *factory = nullptr;
 
-	// 读取配置文件
-	QDomDocument doc;
-	QFile file("config.xml");
-	if (!file.open(QIODevice::ReadOnly)) return nullptr;
-	if (!doc.setContent(&file)){
-		file.close();
-		return nullptr;
+	// 使用tinyxml
+	TiXmlDocument doc("config.xml");
+	bool isOk = doc.LoadFile(TIXML_ENCODING_UTF8);
+	auto rootElement = doc.RootElement();
+	auto n = rootElement->Value();
+	// XPath：/Configuration/Framework/ClassFactory/Factory[@name='factoryName']
+	auto xpath = QString("/Configuration/Framework/ClassFactory/Factory[@name='%1']").arg(factoryName);
+	auto factoryNode = TinyXPath::XNp_xpath_node(rootElement, xpath.toStdString().c_str());
+	if (factoryNode != nullptr){
+		auto className = factoryNode->FirstChild()->Value();
+		return Reflector::instance().reflect(className);
 	}
 
-	file.close();
-	auto xmlExplainNode = doc.firstChild();
-	auto rootElement = doc.documentElement();
-	auto frameworkElement = rootElement.firstChildElement("Framework");
-	if (!frameworkElement.isNull()){
-		auto classFactoryElement = frameworkElement.firstChildElement("ClassFactory");
-		if (!classFactoryElement.isNull()){
-			auto classElement = classFactoryElement.firstChildElement("Factory");
-			while (!classElement.isNull()){
-				auto nameAttr = classElement.attribute("name", "");
-				if (0 == nameAttr.compare(factoryName, Qt::CaseInsensitive)){
-					auto typeAttr = classElement.attribute("type", "");
-					if (!typeAttr.isEmpty()){
-						 return Reflector::instance().reflect(typeAttr.toStdString());
-					}	
-				}
-				classElement = classElement.nextSiblingElement("Class");
-			}
-		}
-	}
 	return factory;
 }
