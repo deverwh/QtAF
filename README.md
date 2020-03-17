@@ -1,5 +1,5 @@
 # QtAF
-基于Qt的应用程序框架 博客主页：http://www.wsai.cc/?cat=10
+基于Qt的应用程序框架 博客主页：http://www.deverat.com
 
 环境：Qt4.8.7  vs2010
 
